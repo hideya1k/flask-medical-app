@@ -8,3 +8,6 @@ __pycache__/
 
 # Dossier 'model' (à adapter selon votre projet)
 model/
+
+projetIA.h5
+

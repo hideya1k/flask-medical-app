@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratory Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for Laboratory Service Page */
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            margin: 0; /* Remove default margin */
+        }
+
+        .container {
+            background-color: #ffffff; /* White background for the form container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%; /* Make the container responsive */
+        }
+
+        h1 {
+            color: #007bff; /* Blue color for main heading */
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #495057; /* Dark grey for subheading */
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .form-group label {
+            font-size: 1.1em;
+            color: #495057; /* Dark grey for labels */
+        }
+
+        input[type="text"], input[type="date"], input[type="email"], input[type="tel"] {
+            font-size: 1.1em;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus, input[type="email"]:focus, input[type="tel"]:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        button[type="submit"], button[type="button"] {
+            background-color: #65a1d5;
+            color: #fff;
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover, button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #495057;
+            margin-top: 15px;
+        }
+
+        /* Optional: Add a background color change when the page is loaded */
+        body {
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .container {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Laboratory Service</h1>
+    <h3>Submit Laboratory Test Details</h3>
+    <form method="POST" action="{{ url_for('laboratory') }}">
+        <div class="form-group">
+            <label for="patientId">Patient ID:</label>
+            <input type="text" id="patientId" name="patient_id" class="form-control" placeholder="Enter Patient ID" required>
+        </div>
+        <div class="form-group">
+            <label for="patientName">Patient Name:</label>
+            <input type="text" id="patientName" name="patient_name" class="form-control" placeholder="Enter Patient Name" required>
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phone_number" class="form-control" placeholder="Enter Phone Number" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" required>
+        </div>
+        <div class="form-group">
+            <label for="testType">Test Type:</label>
+            <input type="text" id="testType" name="test_type" class="form-control" placeholder="Enter Test Type" required>
+        </div>
+        <div class="form-group">
+            <label for="testResult">Test Result:</label>
+            <input type="text" id="testResult" name="test_result" class="form-control" placeholder="Enter Test Result" required>
+        </div>
+        <div class="form-group">
+            <label for="testDate">Test Date:</label>
+            <input type="date" id="testDate" name="test_date" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Test Details</button>
+        <!-- Return Button to Login Page -->
+        <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='/login';">Return</button>
+    </form>
+</div>
+</body>
+</html>

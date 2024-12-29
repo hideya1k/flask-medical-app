@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Doctor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #65a1d5;
+            color: white;
+            padding: 15px 20px;
+        }
+
+        h1, h2 {
+            font-size: 24px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #65a1d5;
+            color: white;
+            border: none;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color:#65a1d5;
+        }
+
+        .note-form input,
+        .note-form textarea {
+            margin-bottom: 10px;
+        }
+
+        .logout-container {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            padding: 15px 0;
+            background-color: #f4f4f9;
+        }
+
+        .logout-btn {
+            background-color: #65a1d5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout-btn:hover {
+            background-color: #65a1d5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Doctor's Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <h2>Consultations List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Consultation Notes</th>
+                    <th>Treatment Plan</th>
+                    <th>Follow Up Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through the consultations list -->
+                {% for consultation in consultations %}
+                <tr>
+                    <!-- Access the consultation fields directly -->
+                    <td>{{ consultation.get('patient_id', 'N/A') }}</td>
+                    <td>{{ consultation.get('consultation_notes', 'N/A') }}</td>
+                    <td>{{ consultation.get('treatment_plan', 'N/A') }}</td>
+                    <td>{{ consultation.get('follow_up_date', 'N/A') }}</td>
+                    <td>
+                        <!-- Form to save consultation notes -->
+                        <form method="POST" action="/save-consultation" class="note-form">
+                            <input type="hidden" name="patient_id" value="{{ consultation.get('patient_id') }}">
+                            <textarea name="consultation_notes" placeholder="Add consultation notes" required></textarea>
+                            <input type="text" name="treatment_plan" placeholder="Treatment plan" required>
+                            <input type="date" name="follow_up_date" required>
+                            <button type="submit">Save Note</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="logout-container">
+            <button class="logout-btn" onclick="window.location.href='/login';">Logout</button>
+        </div>
+    </footer>
+
+</body>
+</html>

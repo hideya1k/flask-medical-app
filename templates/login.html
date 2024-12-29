@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prendre Rendez-vous | PathwayHealth Clinic</title>
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-storage.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .footer-container {
+                text-align: center; /* Center image horizontally */
+                margin-top: 20px;
+            }
+        
+            /* Form Styles */
+            .auth-form {
+                padding: 20px;
+                background-color: #ffffff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                max-width: 400px;
+                margin: 20px auto;
+            }
+            
+            .auth-form h2 {
+                text-align: center;
+                font-size: 1.8rem;
+                color: #333;
+                margin-bottom: 20px;
+            }
+            .auth-form label {
+                display: block;
+                margin: 10px 0 5px;
+                font-weight: bold;
+                color: #555;
+            }
+            
+            .auth-form input[type="email"],
+            .auth-form input[type="password"],
+            .auth-form select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 16px;
+            }
+            
+            .auth-form button {
+                background-color: #65a1d5;
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                width: 100%;
+            }
+            
+            .auth-form button:hover {
+                background-color: #4a8fb8;
+            }
+            
+            .auth-form .form-footer {
+                text-align: center;
+                margin-top: 20px;
+            }
+            
+            .auth-form .form-footer a {
+                color: #65a1d5;
+                text-decoration: none;
+            }
+        </style>
+        
+    </head>
+<body>
+    <div class="main-container">
+        <!-- Header Section -->
+        <header class="header-container">
+            <img src="static/image/banner.png" alt="Doctors Banner" class="banner-image">
+        </header>
+    </div>
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h2>Welcome to PathwayHealth Clinic</h2>
+            <p>
+                At PathwayHealth Clinic, we are dedicated to providing compassionate and comprehensive healthcare to meet all of your needs. 
+                Our team of experienced professionals is here to support you every step of the way.
+            </p>
+            <p>
+                Trust us to care for you and your family with our wide range of medical services and our commitment to excellence.
+            </p>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="service-box">
+                <h3>General Consultation</h3>
+                <p>Our experienced doctors are available for comprehensive health assessments to guide you toward better health.</p>
+            </div>
+            <div class="service-box">
+                <h3>Diagnostic Imaging</h3>
+                <p>We offer advanced diagnostic imaging services, including X-rays, ultrasound, and MRI, to ensure accurate diagnosis.</p>
+            </div>
+            <div class="service-box">
+                <h3>Laboratory Services</h3>
+                <p>Our state-of-the-art lab provides a range of tests and quick results for complete and reliable health evaluations.</p>
+            </div>
+            <div class="service-box">
+                <h3>Vaccination & Immunization</h3>
+                <p>Stay protected with our vaccination services, including flu shots, travel vaccines, and childhood immunizations.</p>
+            </div>
+        </section>
+
+        <!-- Appointment Form Section -->
+        <form class="auth-form" method="POST" action="{{ url_for('login') }}">
+            <h2>Login</h2>
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+            
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            
+            <label for="service">Choose a Service</label>
+            <select name="service" id="service" required>
+                <option value="">-- Select a Service --</option>
+                <option value="general_consultation">General Consultation</option>
+                <option value="diagnostic_imaging">Diagnostic Imaging (covid)</option>
+                <option value="laboratory_services">Laboratory Services</option>
+                
+            </select>
+
+            <button type="submit">Login</button>
+            
+            <div class="form-footer">
+                <p><a href="{{ url_for('forgot_password') }}">Forgot Password?</a></p>
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+            </div>
+        </form>
+
+    
+
+        <!-- Footer Section -->
+        <footer class="footer-container">
+            <img src="static/image/thanks.png" alt="Thank You Banner" class="banner-image">
+        </footer>
+    
+</body>
+</html>

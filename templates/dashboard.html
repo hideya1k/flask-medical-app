@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prendre Rendez-vous | PathwayHealth Clinic</title>
+        <link rel="stylesheet" href="./static/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-storage.js"></script>
+    </head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <img src="static/image/banner.png" alt="Doctors Banner" class="banner-image">
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section scroll-element">
+        <h2>Welcome to PathwayHealth Clinic</h2>
+        <p>
+            
+            Please fill out the form with your personal data. For diagnoses,
+             AI-powered detection will analyze lung images to assist in accurate diagnosis. 
+             Once the diagnosis is complete, the doctor will contact the patient to discuss the results and schedule a follow-up appointment if needed, ensuring the best care and treatment plan moving forward.
+        </p>
+        <p>
+            Trust us to care for you and your family with our wide range of medical services and our commitment to excellence.
+        </p>
+    </section>
+    <section class="welcome-section scroll-element">
+        <h3>Prediction Modele</h3>
+        <p>   
+            The AI model is trained to detect COVID-19 in chest X-rays and CT scans with high accuracy. By analyzing patterns in the images, it identifies signs of infection that may be missed by the human eye. Continuously updated,
+             the model enhances diagnostic accuracy, helping healthcare professionals make faster, informed decisions for better patient outcomes.
+        </p>
+       
+    </section>
+
+  
+
+    <!-- Appointment Form Section -->
+   <!-- Appointment Form Section -->
+<section class="appointment-section scroll-element">
+    <form id="appointment-form" action="/add-appointment" method="POST" enctype="multipart/form-data">
+        <h1>Schedule an Appointment</h1>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="patient_name" required>
+    
+        <label for="lastname">Lastname:</label>
+        <input type="text" id="lastname" name="patient_lastname" required>
+    
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="patient_email" required>
+    
+        <label for="phonenumber">Phone number:</label>
+        <input type="number" id="phonenumber" name="patient_phonenumber" required>
+    
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="appointment_date" required>
+    
+        <label for="time">Hour:</label>
+        <input type="time" id="time" name="appointment_time" required>
+    
+        <!-- Picture Upload Section -->
+        <label for="picture">Upload Picture:</label>
+        <input type="file" id="picture" name="file" accept="image/*" required>
+    
+        <button type="submit" class="submit-button">
+            <i class="fas fa-paper-plane"></i> Submit
+        </button>
+    
+
+    <!-- Admin-only Appointment List Button -->
+    <!-- Admin-only Appointment List Button -->
+    {% if session.get('user_role') == 'admin' %}
+        <div class="admin-actions">
+              <button type="button" class="btn btn-info" onclick="window.location.href='/liste_rdv'">
+               <i class="fas fa-list"></i> See the list of appointments
+            </button>
+        </div>
+    {% endif %}
+    
+    </form> 
+
+</section>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="header-container">
+            <img src="static/image/thanks.png" alt="Thank You Banner" class="banner-image">
+        </div>
+        <div class="logout-container" style="text-align: center; margin-top: 20px;">
+            <a href="/login" class="logout-button">
+                <button type="button" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Log Out
+                </button>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const elements = document.querySelectorAll('.scroll-element');
+        elements.forEach(element => observer.observe(element));
+    </script>
+</body>
+</html>

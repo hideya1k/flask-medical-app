@@ -1,0 +1,10 @@
+# Fichiers et dossiers à ignorer
+
+# Fichiers compilés Python
+__pycache__/
+
+# Environnement virtuel
+.env/
+
+# Dossier 'model' (à adapter selon votre projet)
+model/
